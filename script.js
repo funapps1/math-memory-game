@@ -36,20 +36,28 @@
 
   function generateProblems(count, ops){
     const problems = [];
-    const seen = new Set();
-    while(problems.length < count){
+    const seenKeys = new Set();
+    const seenValues = new Set();
+    // Ensure each numeric value is unique to avoid ambiguous matches
+    let attempts = 0;
+    while(problems.length < count && attempts < 10000){
+      attempts++;
       const a = randInt(1,12);
       const b = randInt(1,12);
       const useOp = ops === 'both' ? (Math.random()<0.5? 'add':'sub') : ops;
       let text, value;
-      if(useOp === 'add'){ text = `${a} + ${b}`; value = a + b }
-      else { // sub
+      if(useOp === 'add'){
+        text = `${a} + ${b}`;
+        value = a + b;
+      } else { // sub
         const x = Math.max(a,b), y = Math.min(a,b);
-        text = `${x} - ${y}`; value = x - y
+        text = `${x} - ${y}`;
+        value = x - y;
       }
       const key = text + '=' + value;
-      if(seen.has(key)) continue;
-      seen.add(key);
+      if(seenKeys.has(key) || seenValues.has(value)) continue;
+      seenKeys.add(key);
+      seenValues.add(value);
       problems.push({text, value});
     }
     return problems;
@@ -90,7 +98,7 @@
     moves++;
     movesEl.textContent = moves;
     canClick = false;
-    const matched = (first.t.value === second.t.value) && (first.t.id[0] !== second.t.id[0]);
+    const matched = (first.t.value === second.t.value) && (first.t.id.slice(0,-1) !== second.t.id.slice(0,-1));
     if(matched){
       first.el.classList.add('match'); second.el.classList.add('match');
       matches++;
