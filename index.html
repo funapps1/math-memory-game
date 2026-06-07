@@ -8,8 +8,12 @@
 </head>
 <body>
   <main class="app">
-    <header>
-      <h1>Math Memory Game</h1>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Brain training</p>
+        <h1>Math Memory Game</h1>
+        <p class="subtitle">Match expressions to answers, beat the clock, and chase a 3-star finish.</p>
+      </div>
       <div class="controls">
         <label>Grid:
           <select id="gridSize">
@@ -31,17 +35,33 @@
       </div>
     </header>
 
-    <section class="status">
+    <section class="status" aria-live="polite">
       <div>Moves: <span id="moves">0</span></div>
       <div>Matches: <span id="matches">0</span></div>
+      <div>Time: <span id="timer">00:00</span></div>
+      <div>Progress: <span id="progress">0%</span></div>
       <div>Stars: <span id="stars">★★★</span></div>
       <div><button id="muteBtn">Mute Voice</button></div>
     </section>
 
-    <section id="board" class="board" aria-live="polite"></section>
+    <section class="progressTrack" aria-hidden="true">
+      <div id="progressBar" class="progressBar"></div>
+    </section>
+    <div class="progressText" id="progressText">0 / 8 pairs matched</div>
+
+    <section id="board" class="board" aria-live="polite" aria-label="Math memory board"></section>
 
     <footer class="message" id="message">Press Start to play.</footer>
   </main>
+
+  <div id="victoryOverlay" class="victoryOverlay hidden" aria-hidden="true">
+    <div class="victoryCard">
+      <div class="victoryBadge">Victory</div>
+      <h2>You cleared the board!</h2>
+      <p id="victorySummary"></p>
+      <button id="playAgainBtn" type="button">Play again</button>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
