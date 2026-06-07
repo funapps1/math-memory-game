@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Math Memory Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>Math Memory Game</h1>
+      <div class="controls">
+        <label>Grid:
+          <select id="gridSize">
+            <option value="4">4×4</option>
+            <option value="6">6×6</option>
+          </select>
+        </label>
+        <label>Ops:
+          <select id="ops">
+            <option value="add">Addition</option>
+            <option value="sub">Subtraction</option>
+            <option value="both">Both</option>
+          </select>
+        </label>
+        <label>Tile size (px):
+          <input id="tileSize" type="number" min="50" max="200" value="90">
+        </label>
+        <button id="startBtn">Start</button>
+      </div>
+    </header>
+
+    <section class="status">
+      <div>Moves: <span id="moves">0</span></div>
+      <div>Matches: <span id="matches">0</span></div>
+      <div>Stars: <span id="stars">★★★</span></div>
+      <div><button id="muteBtn">Mute Voice</button></div>
+    </section>
+
+    <section id="board" class="board" aria-live="polite"></section>
+
+    <footer class="message" id="message">Press Start to play.</footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
