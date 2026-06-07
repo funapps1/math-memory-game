@@ -274,7 +274,7 @@
     starsEl.textContent = '★★★';
     progressEl.textContent = '0%';
     progressBarEl.style.width = '0%';
-    progressTextEl.textContent = `${tileCount / 2} pairs matched`;
+    progressTextEl.textContent = `0 / ${tileCount / 2} pairs matched`;
     messageEl.textContent = 'Find all matching expressions and values.';
   }
 
